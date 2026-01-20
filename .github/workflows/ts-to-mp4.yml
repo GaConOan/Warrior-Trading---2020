@@ -1,0 +1,42 @@
+name: Convert TS to MP4
+
+on:
+  push:
+    paths:
+      - "**/*.TS"
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Install ffmpeg and git-lfs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg git-lfs
+
+      - name: Convert TS to MP4
+        run: |
+          shopt -s globstar
+          for f in **/*.TS; do
+            mp4="${f%.TS}.mp4"
+            if [ ! -f "$mp4" ]; then
+              ffmpeg -y -i "$f" -c copy "$mp4"
+            fi
+          done
+
+      - name: Commit MP4 files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add **/*.mp4 || true
+          git commit -m "Auto convert TS to MP4" || echo "No changes"
+
+      - name: Push changes
+        run: git push
