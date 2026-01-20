@@ -1,0 +1,5 @@
+Using hot keys to place orders is an essential part of some trading strategies, particularly day trading which requires quick executions.
+
+In this video, I'll use the Warrior Trading Simulator and Lightspeed Trader to demonstrate how to use hot keys, and I'll talk about some of the most important hot keys that I use and those I don't recommend using.
+
+Please note that we also have extensive support articles and videos about hot keys in the simulator platform here in our solutions articles.
