@@ -1,9 +1,15 @@
 name: Convert TS to MP4
 
+
 on:
   push:
     paths:
+      - "**/*.ts"
       - "**/*.TS"
+      - "**/*.pdf"
+      - "**/*.PDF"
+      - "**/*.rtf"
+      - "**/*.RTF"
 
 jobs:
   convert:
@@ -15,28 +21,13 @@ jobs:
         with:
           lfs: true
 
-      - name: Install ffmpeg and git-lfs
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg git-lfs
-
-      - name: Convert TS to MP4
-        run: |
-          shopt -s globstar
-          for f in **/*.TS; do
-            mp4="${f%.TS}.mp4"
-            if [ ! -f "$mp4" ]; then
-              ffmpeg -y -i "$f" -c copy "$mp4"
-            fi
-          done
-
-      - name: Commit MP4 files
+      - name: Commit and push files
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add **/*.mp4 || true
-          git commit -m "Auto convert TS to MP4" || echo "No changes"
+          git add **/*.ts **/*.TS **/*.pdf **/*.PDF **/*.rtf **/*.RTF
+          git commit -m "Auto commit TS / PDF / RTF" || echo "No changes to commit"
 
       - name: Push changes
         run: git push
