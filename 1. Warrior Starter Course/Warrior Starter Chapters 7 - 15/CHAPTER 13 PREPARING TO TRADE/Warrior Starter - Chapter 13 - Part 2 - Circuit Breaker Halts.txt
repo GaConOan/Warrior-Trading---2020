@@ -1,0 +1,5 @@
+Circuit breaker halts can be risky, or can offer huge opportunities for profit. Understanding them will not only allow you to better understand market behavior, but will also help you better be able to manage your risk.
+
+Stock halts are one of the most common types of circuit breaker halts. If a stock moves up or down too quickly within a 5 minute period, it can cause an automatic circuit breaker halt and pause trading on that stock for 5 minutes.
+
+When a stock is halted, you cannot trade it until the halt is lifted. You can read more about circuit breaker halts here as well.
